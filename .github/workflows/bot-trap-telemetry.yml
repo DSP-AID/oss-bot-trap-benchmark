@@ -1,0 +1,19 @@
+name: Bot Trap Telemetry Guard
+on:
+  issue_comment:
+    types: [created]
+  pull_request_target:
+    types: [opened, synchronize]
+
+permissions:
+  issues: read
+  pull-requests: read
+  contents: read
+
+jobs:
+  classify-bot-footprint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate Bot Signatures
+        run: |
+          echo "Evaluating incoming event for Shibboleth, Phantom-File, AI-Slop, and Target-Branch traps."
